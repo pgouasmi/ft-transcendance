@@ -1,0 +1,26 @@
+
+FROM python:3.12-slim
+
+# Set environment variables
+#ENV PYTHONDONTWRITEBYTECODE 1
+#ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+COPY GameServer/requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN mkdir -p /etc/nginx/ssl
+
+COPY ./GameServer /app/
+
+EXPOSE 8000
+
+
+WORKDIR /app/PongGame
+
+
+CMD ["daphne", \
+     "-e", "ssl:8000:privateKey=/etc/nginx/ssl/nginx.key:certKey=/etc/nginx/ssl/nginx.crt", \
+     "PongGame.asgi:application"]
+

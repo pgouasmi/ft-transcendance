@@ -1,0 +1,39 @@
+FROM node:alpine as build
+
+WORKDIR /app
+
+ARG VITE_API_URL
+ARG VITE_CLIENT_ID
+ARG VITE_REDIRECT_URI
+ARG VITE_BACKEND_URL
+ARG VITE_WS_URL
+
+ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_CLIENT_ID=${VITE_CLIENT_ID}
+ENV VITE_REDIRECT_URI=${VITE_REDIRECT_URI}
+ENV VITE_BACKEND_URL=${VITE_BACKEND_URL}
+ENV VITE_WS_URL=${VITE_WS_URL}
+
+COPY AstroPong/sources/ ./
+
+RUN npm install
+RUN npm run build
+
+
+FROM nginx:alpine
+
+RUN mkdir -p /etc/nginx/ssl
+
+COPY AstroPong/nginx/nginx.conf /etc/nginx/nginx.conf
+RUN mkdir -p /var/www/Astropong
+
+COPY --from=build /app/dist /var/www/Astropong/dist
+
+RUN chown -R nginx:nginx /var/www/Astropong && \
+    chmod -R 755 /var/www/Astropong && \
+    chown -R nginx:nginx /etc/nginx/ssl
+
+
+EXPOSE 5173
+
+CMD ["nginx", "-g", "daemon off;"]

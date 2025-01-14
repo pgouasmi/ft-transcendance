@@ -1,0 +1,278 @@
+/* Common Popover Styles */
+.game-popover {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+    opacity: 0;
+    z-index: 10;
+    border-radius: 10px;
+    background-color: rgba(150, 150, 150, 0.3);
+    backdrop-filter: blur(1px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.game-popover.visible {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+}
+.game-popover h1 {
+    font-weight: 700;
+    margin-bottom: 1vh;
+}
+
+.popover-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 2vh;
+    height: 90%;
+}
+
+/* Account Dropdown Specific */
+#account_dropdown {
+    display: none;
+    top: 14.5vh;
+    font-size: 2vh;
+    background-color: rgba(150, 150, 150, 0.3);
+    backdrop-filter: blur(1px);
+    z-index: 10;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateX(-20%);
+}
+
+#account_dropdown svg {
+    height: 2vh;
+    width: 2vh;
+    margin-bottom: 0.3vh;
+    margin-right: 0.2vh;
+}
+
+#account_dropdown.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Form Inputs in Popovers */
+.form-floating .form-control {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-radius: 0;
+    color: white !important;
+    font-size: 25px;
+    padding: 20px 0 0 10px !important;
+    min-height: 55px !important;
+    height: 55px !important;
+}
+
+.form-floating label {
+    color: rgb(190, 190, 190);
+    padding: 25px 0px 0px 0px !important;
+    font-size: 20px;
+}
+
+.form-floating .form-control:focus~label::after,
+.form-floating .form-control:not(:placeholder-shown)~label::after {
+    background-color: transparent !important;
+}
+
+.form-floating>.form-control-plaintext~label,
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
+    transform: scale(.85) translateY(-1.3rem) translateX(.15rem) !important;
+}
+
+.form-floating .form-control:focus~label,
+.form-floating .form-control:not(:placeholder-shown)~label {
+    color: #d1d1d1 !important;
+}
+
+.form-floating .form-control:focus {
+    background-color: transparent;
+    border-bottom: 2px solid #007bff;
+    box-shadow: none;
+}
+
+/* Control Keys in Multiplayer Popover */
+.control-key {
+    height: 100px;
+    margin: 10px 0;
+}
+
+/* Tournament Popovers */
+.tournament-AI-button {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding: 0px 5px 0px 5px;
+    outline: solid;
+    outline-width: thin;
+    text-decoration: none;
+    font-size: 32px;
+}
+
+.tournament-AI-button:hover {
+    transform: scale(1.1);
+}
+
+.tournament-AI-button.off {
+    color: gray;
+}
+
+.tournament-AI-button.off:hover {
+    color: rgb(194, 194, 194);
+}
+
+.tournament-AI-button.easy {
+    color: rgb(0, 190, 0);
+}
+
+.tournament-AI-button.medium {
+    color: rgb(255, 255, 0);
+}
+
+.tournament-AI-button.hard {
+    color: rgb(255, 0, 0);
+}
+
+.victory-popover {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+    opacity: 0;
+    z-index: 10;
+    border-radius: 10px;
+    background-color: rgba(150, 150, 150, 0.3);
+    backdrop-filter: blur(1px);
+    position: absolute;
+    font-size: medium;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, scale 0.3s ease-in-out;
+}
+
+.victory-popover.visible {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.victory-popover h1 {
+    font-weight: 700;
+    margin-bottom: 1vh;
+}
+
+/* Noms des players pour les matchs annoucement */
+
+.player-name-popover {
+    position: fixed;
+    top: 50%;
+    padding: 1rem 2rem;
+    background-color: rgba(150, 150, 150, 0.3);
+    backdrop-filter: blur(1px);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: transform, opacity;
+    transition: all 0.6s ease-out;
+}
+
+/* Position initiale hors écran */
+.player-name-popover.left {
+    left: 0;
+    transform: translateX(-100%) translateY(-50%) rotate(-5deg);
+    color: #f8bc04;
+}
+
+.player-name-popover.right {
+    right: 0;
+    transform: translateX(100%) translateY(-50%) rotate(5deg);
+    color: #9aeadd;
+}
+
+/* Animation vers le centre */
+.player-name-popover.left.active {
+    opacity: 1;
+    transform: translateX(25vw) translateY(-50%) rotate(0deg);
+    animation: stayVisible 4s forwards;
+}
+
+.player-name-popover.right.active {
+    opacity: 1;
+    transform: translateX(-25vw) translateY(-50%) rotate(0deg);
+    animation: stayVisible 4s forwards;
+}
+
+/* Animations d'impact */
+.player-name-popover.left.impact {
+    animation: impactLeft 0.8s ease;
+}
+
+.player-name-popover.right.impact {
+    animation: impactRight 0.8s ease;
+}
+
+@keyframes stayVisible {
+    0%, 90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes impactLeft {
+    0% { 
+        transform: translate(25vw, -50%) scale(1);
+    }
+    30% { 
+        transform: translate(25vw, -50%) scale(1.15);
+    }
+    45% { 
+        transform: translate(25vw, -50%) scale(1.2);
+    }
+    70% { 
+        transform: translate(25vw, -50%) scale(1.1);
+    }
+    100% { 
+        transform: translate(25vw, -50%) scale(1);
+    }
+}
+
+@keyframes impactRight {
+    0% { 
+        transform: translate(-25vw, -50%) scale(1);
+    }
+    30% { 
+        transform: translate(-25vw, -50%) scale(1.15);
+    }
+    45% { 
+        transform: translate(-25vw, -50%) scale(1.2);
+    }
+    70% { 
+        transform: translate(-25vw, -50%) scale(1.1);
+    }
+    100% { 
+        transform: translate(-25vw, -50%) scale(1);
+    }
+}

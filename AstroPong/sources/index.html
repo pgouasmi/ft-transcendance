@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AstroPong</title>
+    <link rel="icon" type="image/x-icon" href="/images/astropong-icon-light.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <!-- Écran de chargement -->
+    <div class="loading-screen">
+        <div class="img-text">
+            <img src="/images/astropong-loading.svg" id="loading-logo" alt="Logo de chargement">
+            <p id="press-to-start">Appuyez sur une touche</p>
+        </div>
+        <div id="loading-bar"></div>
+        <div id="loading-end"></div>
+    </div>
+
+    <!-- Barres noires -->
+    <div id="black-bar-top"></div>
+    <div id="black-bar-bottom"></div>
+
+    <!-- Menu Principal -->
+    <div id="main-menu" class="text-light container-fluid">
+        <div class="d-flex flex-row row">
+            <div class="col d-flex align-items-center">
+                <img src="/images/astropong-icon-light.svg" alt="Icône Astropong" class="menu-logo">
+                <img src="/images/astropong-text.svg" alt="Texte Astropong" class="menu-text">
+            </div>
+            <div id="user_div" class="col d-flex align-items-center justify-content-end">
+            </div>
+        </div>
+        <nav class="row container menu-nav">
+            <div><a id="single-player-button" class="menu-link" href="/singleplayer">Un Joueur</a></div>
+            <div><a id="multi-player-button" class="menu-link" href="/multiplayer">Multijoueur</a></div>
+            <div><a id="tournament-button" class="menu-link" href="/tournamentpopover">Tournoi</a></div>
+        </nav>
+    </div>
+
+    <!-- Fenêtres contextuelles -->
+    <div id="difficulty-popover" class="game-popover p-4">
+        <h1>Niveau de l'IA</h1>
+        <div class="popover-content d-flex flex-row mt-3">
+            <a id="easy_button" class="difficulty-button btn btn-light mx-2" href="/singleplayer/easy">Facile</a>
+            <a id="medium_button" class="difficulty-button btn btn-light mx-2" href="/singleplayer/medium">Moyen</a>
+            <a id="hard_button" class="difficulty-button btn btn-light mx-2" href="/singleplayer/hard">Difficile</a>
+        </div>
+    </div>
+
+    <div id="multiplayer-popover" class="game-popover p-4">
+        <h1>Mode</h1>
+        <div class="popover-content d-flex flex-row mt-3">
+            <a id="lan_button" class="mp-mode-button btn btn-light mx-2" href="/multiplayer/local">Réseau local</a>
+            <a id="shared_screen_button" class="mp-mode-button btn btn-light mx-2" href="/multiplayer/sharedscreen">Écran partagé</a>
+        </div>
+    </div>
+
+    <div id="tournament-popover" class="game-popover">
+        <h1>Joueurs</h1>
+        <form id="form-tournament" class="popover-content">
+            <div class="container">
+                <div id="tournament-players-list" class="row row-cols-1 row-cols-md-2">
+                    <div class="col my-3">
+                        <div class="form-floating d-flex align-items-center">
+                            <input type="text" class="form-control" id="player1-input" maxlength="10" placeholder="" required>
+                            <label for="player1-input">Joueur 1</label>
+                            <a class="tournament-AI-button off">IA</a>
+                        </div>
+                    </div>
+                    <div class="col my-3">
+                        <div class="form-floating d-flex align-items-center">
+                            <input type="text" class="form-control" id="player2-input" maxlength="10" placeholder="" required>
+                            <label for="player2-input">Joueur 2</label>
+                            <a class="tournament-AI-button off">IA</a>
+                        </div>
+                    </div>
+                    <div class="col my-3">
+                        <div class="form-floating d-flex align-items-center">
+                            <input type="text" class="form-control" id="player3-input" maxlength="10" placeholder="" required>
+                            <label for="player3-input">Joueur 3</label>
+                            <a class="tournament-AI-button off">IA</a>
+                        </div>
+                    </div>
+                    <div class="col my-3">
+                        <div class="form-floating d-flex align-items-center">
+                            <input type="text" class="form-control" id="player4-input" maxlength="10" placeholder="" required>
+                            <label for="player4-input">Joueur 4</label>
+                            <a class="tournament-AI-button off">IA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center justify-content-arround">
+                <a id="4-players-button" class="container my-4 mx-5 btn btn-light p-3" style="width: 300px;">
+                    4 Joueurs
+                </a>
+                <a id="8-players-button" class="container my-4 mx-5 btn btn-light p-3" style="width: 300px;">
+                    8 Joueurs
+                </a>
+            </div>
+            <button class="p-2 btn btn-light" type="submit">
+                Démarrer le Tournoi
+            </button>
+        </form>
+    </div>
+
+    <canvas id="game-renderer"></canvas>
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

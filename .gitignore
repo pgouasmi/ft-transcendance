@@ -1,0 +1,9 @@
+.env
+ssl/
+__pycache__/
+.DS_Store
+env/
+debug.log
+debugClient.txt
+.idea/
+PongAI/ai_data/

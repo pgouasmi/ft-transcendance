@@ -68,7 +68,7 @@ check-env:
 	done < .env; \
 	missing_vars=0; \
 	for var in BACKEND_SECRET_KEY JWT_SECRET_KEY TEMPORARY_JWT_SECRET_KEY PYTHONUNBUFFERED \
-			  VITE_CLIENT_ID VITE_CLIENT_SECRET SUPERUSER_USERNAME SUPERUSER_EMAIL \
+			SUPERUSER_USERNAME SUPERUSER_EMAIL \
 			  SUPERUSER_PASSWORD DB_NAME DB_USER DB_PASSWORD; do \
 		if ! grep -q "^$$var=" .env; then \
 			echo "$(RED)Error: Required variable $$var is missing from .env file$(NC)"; \
